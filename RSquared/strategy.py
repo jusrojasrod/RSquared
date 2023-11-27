@@ -24,4 +24,7 @@ class strategy():
     def etf_data():
         pass
     
+    def concat_factors():
+        pass
+
     def 
