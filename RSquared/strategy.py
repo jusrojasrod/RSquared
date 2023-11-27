@@ -27,4 +27,23 @@ class strategy():
     def concat_factors():
         pass
 
-    def 
+    def returns():
+        pass
+
+    def excess_return():
+        pass
+
+    def plot_returns():
+        pass
+
+    def regression():
+        pass
+
+    def join_reg_factors():
+        pass
+
+    def r_squared():
+        pass
+
+    def strategy():
+        pass
