@@ -12,3 +12,7 @@ def percentile(serie):
     """
     """
     return pd.qcut(serie, 5, labels=False)
+
+
+def join_r2_alpha():
+    pass
