@@ -1,9 +1,11 @@
-import pandas_datareader.data as reader    # Para traer la data directamente de la página de Fama-French
+# import pandas_datareader.data as reader    # Para traer la data directamente
+# de la página de Fama-French
+
 import pandas as pd
-import numpy as np
-from datetime import date
-import yfinance as yf
-import matplotlib.pyplot as plt
+# import numpy as np
+# from datetime import date
+# import yfinance as yf
+# import matplotlib.pyplot as plt
 
 import os
 import time
