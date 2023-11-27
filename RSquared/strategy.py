@@ -1,4 +1,6 @@
 import utils
+import paths
+import tickers as t
 
 
 class strategy():
@@ -7,7 +9,8 @@ class strategy():
         self.start = start
         self.end = end
 
-        self.tickers = tickers() # define function to read tickers
+        # initialize tickers
+        self.tickers = t.TICKERS()  # define function to read tickers
 
     def etf_dates(self):
         pass
@@ -23,7 +26,7 @@ class strategy():
 
     def etf_data():
         pass
-    
+
     def concat_factors():
         pass
 
