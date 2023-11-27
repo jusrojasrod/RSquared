@@ -16,7 +16,19 @@ def runStrategy():
 
 
 if __name__ == "__main__":
+    # Start timer
     start_time = time.time()
+
+    # Setup
+    folderPath_rsrc = '/ETFs/Resources/'
+    folderPath_results = '/ETFs/results/'
+    pictures = '/Pictures/'
+    cwd = os.getcwd()
+    path_rsrc = cwd + folderPath_rsrc
+    path_results = cwd + folderPath_results
+
+    # Read data
+    ETFs = pd.read_excel(path_rsrc + "list_of_ETFs.xlsx")
 
     runStrategy()
 
