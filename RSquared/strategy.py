@@ -23,3 +23,5 @@ class strategy():
 
     def etf_data():
         pass
+    
+    def 
