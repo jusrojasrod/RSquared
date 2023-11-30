@@ -1,16 +1,19 @@
-import utils
-import paths
-import tickers as t
+# import utils
+# import paths
+import sectors as s
+import data
 
 
-class strategy():
+class strategy:
 
-    def __init__(self, start=None, end=None):
+    def __init__(self, y_back=5, start=None, end=None):
         self.start = start
         self.end = end
+        self.y_back = y_back
+        self.__ff_data = None
 
         # initialize tickers
-        self.tickers = t.TICKERS()  # define function to read tickers
+        self.tickers = s.ETF_sectors  # define function to read tickers
 
     def etf_dates(self):
         pass
@@ -18,16 +21,16 @@ class strategy():
     def factors_dates(self):
         pass
 
-    def fama_french_data():
+    def _set_fama_french_data(self):
+        self.__ff_data = data.famaFrenchdownload(self.start, self.end)[0]/100
+
+    def _set_momento_data():
         pass
 
-    def momento_data():
+    def _set_etf_data():
         pass
 
-    def etf_data():
-        pass
-
-    def concat_factors():
+    def _concat_factors():
         pass
 
     def returns():
@@ -39,7 +42,7 @@ class strategy():
     def plot_returns():
         pass
 
-    def regression():
+    def _regression():
         pass
 
     def join_reg_factors():
