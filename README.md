@@ -1,1 +1,1 @@
-# RSqured
+# RSquared
