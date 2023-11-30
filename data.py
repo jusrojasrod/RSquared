@@ -1,4 +1,5 @@
 import pandas_datareader.data as reader
+import yfinance as yf
 
 
 def famaFrenchdownload(interval, start, end):
@@ -14,3 +15,7 @@ def famaFrenchdownload(interval, start, end):
                                  'famafrench',
                                  start, end)
         return data
+
+
+def downloadData(tickers, start, end):
+    return yf.download(tickers, start=start, end=end, interval="1mo")
