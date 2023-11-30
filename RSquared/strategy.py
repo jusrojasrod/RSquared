@@ -4,13 +4,15 @@ import sectors as s
 import data
 
 
-class strategy:
+class Strategy:
 
     def __init__(self, y_back=5, start=None, end=None):
+
         self.start = start
         self.end = end
         self.y_back = y_back
-        self.__ff_data = None
+
+        self.set_fama_french_data(None)
 
         # initialize tickers
         self.tickers = s.ETF_sectors  # define function to read tickers
@@ -21,16 +23,19 @@ class strategy:
     def factors_dates(self):
         pass
 
-    def _set_fama_french_data(self):
-        self.__ff_data = data.famaFrenchdownload(self.start, self.end)[0]/100
+    def set_fama_french_data(self):
+        self._ff_data = data.famaFrenchdownload(self.start, self.end)[0]/100
 
-    def _set_momento_data():
+    def get_fama_french_data(self):
+        return self._ff_data
+
+    def set_momento_data():
         pass
 
-    def _set_etf_data():
+    def set_etf_data():
         pass
 
-    def _concat_factors():
+    def concat_factors():
         pass
 
     def returns():
