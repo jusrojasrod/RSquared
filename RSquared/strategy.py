@@ -1,3 +1,4 @@
+import pandas as pd
 from datetime import date
 
 # import utils
@@ -8,9 +9,12 @@ from . import data
 
 class Strategy:
 
-    tickers = s.ETF_sectors
+    symbols = s.ETF_sectors
 
-    def __init__(self, y_back=5, start=None, end=date.today()):
+    def __init__(self, y_back=5, start=None, end=date.today(),
+                 column_name="Close"):
+        self.column_name = column_name
+
         # Fama-French dates
         self.start_ff = start
         self.end_ff = end
@@ -23,9 +27,10 @@ class Strategy:
         self._ff_data = None
 
         # initialize dates
-        self._set_factors_dates()
+        self.set_factors_dates()
+        self.set_etf_dates()
 
-    def _set_etf_dates(self):
+    def set_etf_dates(self):
         self.start_etf = date(self.end_ff.year - self.y_back,
                               self.end_ff.month - 1,
                               1)
@@ -34,13 +39,13 @@ class Strategy:
                             last_ff_date.month,
                             29)
 
-    def _set_factors_dates(self):
-        if self.start is None:
-            self.start = date(self.end_ff.year - self.y_back,
-                              self.end_ff.month,
-                              self.end_ff.day)
+    def set_factors_dates(self):
+        if self.start_ff is None:
+            self.start_ff = date(self.end_ff.year - self.y_back,
+                                 self.end_ff.month,
+                                 self.end_ff.day)
 
-    def _set_fama_french(self):
+    def set_fama_french(self):
         self._ff_data = data.famaFrenchdownload(start=self.start,
                                                 end=self.end)[0]/100
 
@@ -52,9 +57,13 @@ class Strategy:
     def set_momento_data():
         pass
 
-    def set_etf_data(self, tickers):
-        self._ETFdata = data.downloadData(tickers,
-                                          start=self.start, end=self.end)
+    def set_etf_data(self):
+        df = data.downloadData(tickers=self.symbols,
+                               start=self.start_etf,
+                               end=self.end_etf)[self.column_name]
+        # self._etf_data = pd.datetime(df.index,
+        #                              format="%Y%m").to_period("M")
+        print(df)
 
     def concat_factors():
         pass
