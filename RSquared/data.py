@@ -1,8 +1,12 @@
 import pandas_datareader.data as reader
 import yfinance as yf
 
+# delete later [IMPORTANT]
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
-def famaFrenchdownload(interval, start, end):
+
+def famaFrenchdownload(start, end, interval='monthly'):
     """
     """
     if interval == "monthly":
