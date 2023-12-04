@@ -26,9 +26,14 @@ class Strategy:
 
         self._ff_data = None
 
+        self.set_fama_french()
         # initialize dates
         self.set_factors_dates()
         self.set_etf_dates()
+
+        # Initialize fama-franch and ETF data
+
+        self.set_etf_data()
 
     def set_etf_dates(self):
         self.start_etf = date(self.end_ff.year - self.y_back,
@@ -46,8 +51,8 @@ class Strategy:
                                  self.end_ff.day)
 
     def set_fama_french(self):
-        self._ff_data = data.famaFrenchdownload(start=self.start,
-                                                end=self.end)[0]/100
+        self._ff_data = data.famaFrenchdownload(start=self.start_ff,
+                                                end=self.end_ff)[0]/100
 
     def get_fama_french(self):
         if self._ff_data:
@@ -61,9 +66,10 @@ class Strategy:
         df = data.downloadData(tickers=self.symbols,
                                start=self.start_etf,
                                end=self.end_etf)[self.column_name]
-        # self._etf_data = pd.datetime(df.index,
-        #                              format="%Y%m").to_period("M")
-        print(df)
+        return df
+        self._etf_data = pd.datetime(df.index,
+                                     format="%Y%m").to_period("M")
+        # print(df)
 
     def concat_factors():
         pass
