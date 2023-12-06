@@ -25,6 +25,15 @@ class Strategy:
                                      self.endFF_date.month,
                                      self.endFF_date.day)
 
+        # Fama-French history
+        self.ff_data = None
+        self.fama_french_data()
+
+        # ETF df dates
+        self.endETF_date = None
+        self.startETF_date = None
+        self.etf_dates()
+
     @property
     def factors_end_date(self):
         return self.endFF_date
@@ -44,17 +53,21 @@ class Strategy:
     def fama_french_data(self):
         data_ = data.famaFrenchdownload(start=self.startFF_date,
                                         end=self.endFF_date)[0]/100
+        self.ff_data = data_.copy()
         return data_
 
-    # def etf_dates(self):
-    #     # self.start_etf = date(self.end_ff.year - self.y_back,
-    #     #                       self.end_ff.month - 1,
-    #     #                       1)
-    #     # last_ff_date = self._ff_data.index[-1]
-    #     # self.end_etf = date(last_ff_date.year,
-    #     #                     last_ff_date.month,
-    #     #                     29)
-    #     pass
+    def etf_dates(self):
+        # Necesito la última fecha del df de FF
+        # end: el mismo "endFF_date" con dia 29 (día random)
+        # start: restar "lookback_period" al año de "endFF_date"
+
+        self.startETF_date = date(self.endFF_date.year - self.lookback_period,
+                                  self.endFF_date.month - 1,
+                                  1)
+        lastFF_date = self.ff_data.index[-1]
+        self.endETF_date = date(lastFF_date.year,
+                                lastFF_date.month,
+                                29)
 
     # def get_fama_french(self):
     #     # if self._ff_data:
