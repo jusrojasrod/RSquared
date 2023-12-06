@@ -4,7 +4,7 @@ from datetime import date
 # import utils
 # import paths
 from . import sectors as s
-# from . import data
+from . import data
 
 
 class Strategy:
@@ -35,11 +35,16 @@ class Strategy:
 
     @property
     def factors_start_date(self):
-        return self.start_ff
+        return self.startFF_date
 
     @factors_start_date.setter
     def factors_start_date(self, start):
         self.startFF_date = start
+
+    def fama_french_data(self):
+        data_ = data.famaFrenchdownload(start=self.startFF_date,
+                                        end=self.endFF_date)[0]/100
+        return data_
 
     # def etf_dates(self):
     #     # self.start_etf = date(self.end_ff.year - self.y_back,
@@ -49,11 +54,6 @@ class Strategy:
     #     # self.end_etf = date(last_ff_date.year,
     #     #                     last_ff_date.month,
     #     #                     29)
-    #     pass
-
-    # def set_fama_french(self):
-    #     # self._ff_data = data.famaFrenchdownload(start=self.start_ff,
-    #     #                                         end=self.end_ff)[0]/100
     #     pass
 
     # def get_fama_french(self):
