@@ -1,3 +1,4 @@
+import pandas as pd
 from datetime import date
 import unittest
 import os
@@ -23,6 +24,11 @@ class TestStrategy(unittest.TestCase):
         self.test.factors_start_date = date(2022, 1, 1)
         self.assertEqual(self.test.startFF_date, date(2022, 1, 1),
                          "Incorrect start date")
+
+    def test_fama_franch_data(self):
+        data = self.test.fama_french_data()
+        self.assertIsInstance(data, pd.DataFrame, "data has wrong type")
+        self.assertFalse(data.empty, "data is empty")
 
 
 if __name__ == '__main__':
