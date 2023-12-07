@@ -30,6 +30,9 @@ class TestStrategy(unittest.TestCase):
         self.assertIsInstance(data, pd.DataFrame, "data has wrong type")
         self.assertFalse(data.empty, "data is empty")
 
+    def test_etf_dates(self):
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()
